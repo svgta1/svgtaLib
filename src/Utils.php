@@ -167,4 +167,35 @@ class Utils
       $ar['logMsg'] = $class . '->' . $method . '()';
       self::log(LOG_DEBUG, $ar);
     }
+
+    public static function is_bot(): bool {
+  		if($_SERVER["REMOTE_ADDR"] == $_SERVER["SERVER_ADDR"])
+  			return true;
+
+  		return (
+  			isset($_SERVER['HTTP_USER_AGENT'])
+  				&& preg_match('/bot|crawl|slurp|spider|mediapartners|facebook|Lighthouse|DareBoost|Qwant|google/i', $_SERVER['HTTP_USER_AGENT'])
+  		);
+  	}
+    public static function getIP(): string{
+      return isset($_SERVER['HTTP_CLIENT_IP']) ? $_SERVER['HTTP_CLIENT_IP'] : (isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $_SERVER['REMOTE_ADDR']);
+    }
+    public static function getUA(): array{
+      $ua =  isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : 'UA not set';
+      return [
+        'UA' => $ua,
+        'browscap_info' => @\get_browser(null, true),
+      ];
+    }
+    public static function is_phpscript(string $string): bool{
+      $string = trim($string);
+      $pat = '/^\<\?php/';
+      if(preg_match($pat, $string))
+        return true;
+      return false;
+    }
+    public static function isJson(string $string): bool{
+      json_decode($string);
+      return json_last_error() === JSON_ERROR_NONE;
+    }
 }
