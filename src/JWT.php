@@ -304,6 +304,16 @@ class JWT
     $jws = new JWT(Keys::get_private_key_sign());
     return $jws->SignPayload($payload, ['kid']);
   }
+  public static function verifyPEM(string $jws, string $publicKey, string $kid){
+    $keys = new Keys();
+    $res = $keys->set_public_key_pem($publicKey)
+      ->set_kid($kid)
+      ->use_for_signVerify()
+      ->build();
+
+    $jwt = new JWT(Keys::genKeySetForVerif());
+    $jwt->verifyJWSWithKeysSet($jws);
+  }
 
   private function __construct(JWK | JWKSet $JWK){
     $this->JWK = $JWK;
