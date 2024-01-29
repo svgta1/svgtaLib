@@ -295,6 +295,16 @@ class JWT
     ];
   }
 
+  public static function signPEM(array $payload, string $privateKey, string $kid){
+    $keys = new Keys();
+    $res = $keys->set_private_key_pem($privateKey)
+      ->set_kid($kid)
+      ->use_for_signVerify()
+      ->build();
+    $jws = new JWT(Keys::get_private_key_sign());
+    return $jws->SignPayload($payload, ['kid']);
+  }
+
   private function __construct(JWK | JWKSet $JWK){
     $this->JWK = $JWK;
     if($JWK instanceof JWK)
@@ -326,10 +336,10 @@ class JWT
       'alg' => $this->sigAlg,
       'typ' => 'JWT'
     ];
-    if(!is_null(Keys::get_public_key_sign())){
+    if(!is_null(Keys::get_private_key_sign())){
       foreach($hOptions as $k){
-        if(Keys::get_public_key_sign()->has($k))
-          $options[$k] = Keys::get_public_key_sign()->get($k);
+        if(Keys::get_private_key_sign()->has($k))
+          $options[$k] = Keys::get_private_key_sign()->get($k);
       }
     }
     $jws = $jwsBuilder
