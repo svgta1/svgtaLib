@@ -352,6 +352,13 @@ class JWT
           $options[$k] = Keys::get_private_key_sign()->get($k);
       }
     }
+    if(!is_null(Keys::get_public_key_sign())){
+      foreach($hOptions as $k){
+        if(Keys::get_public_key_sign()->has($k) && !isset($options[$k]))
+          $options[$k] = Keys::get_public_key_sign()->get($k);
+      }
+    }
+
     $jws = $jwsBuilder
       ->create()
       ->withPayload(json_encode($payload))
