@@ -143,7 +143,7 @@ class Keys
     return $clone;
   }
 
-  public function set_private_key_pem_file(string $path, ?string $paswword = null): self{
+  public function set_private_key_pem_file(string $path, ?string $password = null): self{
     $pem = \file_get_contents($path);
     return $this->set_private_key_pem($pem, $password);
   }
