@@ -3,22 +3,7 @@
     "description": "Library used in different projects",
     "type": "library",
     "require": {
-        "web-token/jwt-core": "^3.1",
-        "web-token/jwt-key-mgmt": "^3.1",
-        "web-token/jwt-signature": "^3.1",
-        "web-token/jwt-signature-algorithm-hmac": "^3.1",
-        "web-token/jwt-signature-algorithm-ecdsa": "^3.1",
-        "web-token/jwt-signature-algorithm-rsa": "^3.1",
-        "web-token/jwt-signature-algorithm-eddsa": "^3.1",
-        "web-token/jwt-signature-algorithm-none": "^3.1",
-        "web-token/jwt-encryption-algorithm-aeskw": "^3.1",
-        "web-token/jwt-encryption-algorithm-aesgcmkw": "^3.1",
-        "web-token/jwt-encryption-algorithm-rsa": "^3.1",
-        "web-token/jwt-encryption-algorithm-aesgcm": "^3.1",
-        "web-token/jwt-encryption-algorithm-aescbc": "^3.1",
-        "web-token/jwt-encryption-algorithm-ecdh-es": "^3.1",
-        "web-token/jwt-encryption-algorithm-pbes2": "^3.1",
-        "web-token/jwt-nested-token": "^3.1"
+        "web-token/jwt-library": "^3.3"
     },
     "license": "MIT",
     "autoload": {
