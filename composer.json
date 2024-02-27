@@ -3,7 +3,8 @@
     "description": "Library used in different projects",
     "type": "library",
     "require": {
-        "web-token/jwt-library": "^3.3"
+        "web-token/jwt-library": "^3.3",
+        "spomky-labs/aes-key-wrap": "^7.0"
     },
     "license": "MIT",
     "autoload": {
